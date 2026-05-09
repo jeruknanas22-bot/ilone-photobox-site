@@ -845,11 +845,11 @@ this and remember that being loved by you has changed me in the most beautiful w
 
     setTimeout(()=>{
       document.getElementById("letterSection").classList.remove("hidden");
-      const letterSection = document.getElementById("letterSection");
+      const stickerPanel = document.getElementById("stickerPanel");
 
-window.scrollTo({
-  top: letterSection.offsetTop - 300,
-  behavior: "smooth"
+stickerPanel.scrollIntoView({
+  behavior: "smooth",
+  block: "center"
       });
     },2200);
   }
