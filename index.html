@@ -427,27 +427,56 @@
     }
 
     .stickers{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:10px;
-    }
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:14px;
+  width:100%;
+  margin-top:18px;
+}
 
-    .sticker{
-      padding:12px 16px;
-      border-radius:999px;
-      background:var(--paper);
-      border:1px solid var(--line);
-      cursor:pointer;
-      font-size:.82rem;
-      color:var(--brown);
-      transition:.3s;
-    }
+.sticker{
+  padding:16px 18px;
+  border-radius:18px;
+  background:linear-gradient(145deg,#fffaf4,#f4e8db);
+  border:1px solid rgba(74,59,48,0.08);
+  cursor:pointer;
+  font-size:.9rem;
+  color:var(--brown);
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;
+  letter-spacing:.03em;
+  box-shadow:
+    0 10px 20px rgba(74,59,48,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.7);
+  transition:.35s ease;
+  position:relative;
+  overflow:hidden;
+}
 
-    .sticker:hover{
-      transform:translateY(-2px);
-      background:#f3ebe2;
-    }
+.sticker::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,0.45) 50%,
+    transparent 100%
+  );
+  transform:translateX(-120%);
+  transition:.5s;
+}
+
+.sticker:hover{
+  transform:translateY(-4px) rotate(-1deg);
+  box-shadow:
+    0 16px 28px rgba(74,59,48,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.sticker:hover::before{
+  transform:translateX(120%);
+}
 
     /* LETTER */
     .letter-section{
@@ -550,7 +579,7 @@
 <section class="screen opening" id="openingScreen">
   <h1>Photobox!</h1>
   <p>
-    Not every moment asks to last forever, some simply ask to be held a little more carefully.
+    Are you ready?
   </p>
 
   <div class="machine-shell">
@@ -588,7 +617,7 @@
     </div>
 
     <div class="photostrip" id="photoStrip">
-  <div class="strip-title">Captured</div>
+  <div class="strip-title">Sweet!</div>
   <div class="strip-date" id="dateStamp"></div>
 
   <div class="photo-grid">
@@ -684,7 +713,7 @@ this and remember that being loved by you has changed me in the most beautiful w
 </section>
 
 <footer>
-  Some things fade. Some things stay folded inside us.
+  Keep this love forever.
 </footer>
 
 <script>
@@ -756,7 +785,7 @@ this and remember that being loved by you has changed me in the most beautiful w
           currentPhoto++;
           progressFill.style.width = `${(currentPhoto / photos.length) * 100}%`;
 
-          setTimeout(nextPhoto,1300);
+          setTimeout(nextPhoto,2500);
         },250);
 
       }else{
@@ -779,7 +808,7 @@ this and remember that being loved by you has changed me in the most beautiful w
                 font-family='Arial'
                 fill='#7b6758'
                 letter-spacing='3'>
-            COMPLETE
+            COMPLETE!
           </text>
         </svg>
       `);
@@ -812,7 +841,7 @@ this and remember that being loved by you has changed me in the most beautiful w
     };
 
     document.getElementById("dateStamp").textContent =
-      today.toLocaleDateString('en-GB', options);
+      today.toLocaleDateString('en-US', options);
 
     setTimeout(()=>{
       document.getElementById("letterSection").classList.remove("hidden");
